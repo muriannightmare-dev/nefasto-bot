@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b0d">
+<title>NEFASTO — Demonstração</title>
+<style>
+:root{color-scheme:dark;--bg:#09090b;--panel:#111114;--panel2:#17171b;--line:#2b2024;--red:#d51f36;--red2:#8f1425;--text:#f2eef0;--muted:#a59ba0;--green:#a9d8b2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#241016 0,#0b0b0d 48%,#070708 100%);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh;padding:18px 12px}
+.app{max-width:760px;margin:0 auto;border:1px solid #342128;border-radius:20px;overflow:hidden;background:rgba(12,12,14,.96);box-shadow:0 18px 60px #0009}
+header{padding:20px 18px 16px;background:linear-gradient(120deg,#1c0d12,#101013 65%);border-bottom:1px solid var(--line)}
+.brandrow{display:flex;align-items:center;gap:12px}
+.sig{width:48px;height:48px;display:grid;place-items:center;border:1px solid #7d1a2b;border-radius:14px;background:#220c12;color:#f33b50;font-size:25px}
+h1{font-size:23px;letter-spacing:.18em;margin:0;font-weight:800}
+.kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#e54b60;margin-top:3px}
+.subtitle{color:var(--muted);font-size:13px;margin:14px 0 0}
+.status{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:5px 9px;border:1px solid #423036;border-radius:99px;color:#d5c9ce;font-size:11px}
+.dot{width:7px;height:7px;border-radius:50%;background:#d52b42;box-shadow:0 0 8px #d52b4270}
+.notice{margin:14px 14px 0;padding:10px 12px;border:1px solid #49313a;background:#170e12;border-radius:12px;color:#d8c8ce;font-size:12px}
+.notice strong{color:#ff6b7c}
+.chat{height:min(48vh,420px);min-height:300px;overflow-y:auto;padding:16px 13px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.msg{max-width:88%;padding:11px 13px;border-radius:14px;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.bot{align-self:flex-start;background:#19171b;border:1px solid #33272d;border-bottom-left-radius:4px}
+.user{align-self:flex-end;background:#45111d;border:1px solid #742033;border-bottom-right-radius:4px}
+.who{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#ed6a7a;margin-bottom:5px;font-weight:700}
+.user .who{color:#f3a1ad}
+.time{font-size:10px;color:#94878d;margin-top:6px;text-align:right}
+.quick{padding:0 14px 14px;display:flex;gap:7px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+.chip{border:1px solid #49232d;background:#170d11;color:#f0cbd1;border-radius:99px;padding:8px 11px;font-size:12px}
+.chip:active,.chip:hover{background:#35101a;border-color:#9d253b}
+.composer{display:flex;gap:8px;padding:13px;border-top:1px solid var(--line);background:#0f0f12}
+input{min-width:0;flex:1;border:1px solid #383137;background:#17171b;color:var(--text);padding:13px 12px;border-radius:12px;font-size:14px;outline:none}
+input:focus{border-color:#b72a40;box-shadow:0 0 0 2px #b72a4020}
+.send{border:0;border-radius:12px;background:var(--red);color:white;padding:0 17px;font-weight:750}
+.send:hover{background:#ef334b}
+.bottom{padding:0 15px 16px;color:#857b80;font-size:11px;text-align:center}
+.guide{padding:17px 15px 19px;border-top:1px solid var(--line);background:#0d0d10}
+.guide h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;color:#e9dce1}
+.cmdgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cmd{border:1px solid #29242a;border-radius:11px;padding:10px;background:#131316}
+code{color:#ff687c;font-size:12px}
+.cmd p{margin:4px 0 0;color:var(--muted);font-size:12px}
+footer{border-top:1px solid #211c20;padding:12px 15px;color:#7f747a;font-size:10px;text-align:center}
+@media(min-width:600px){body{padding:28px 18px}.chat{padding:20px}.msg{max-width:78%}.guide{padding:20px}}
+@media(max-width:360px){h1{font-size:20px}.sig{width:42px;height:42px}.cmdgrid{grid-template-columns:1fr}.send{padding:0 12px}.chat{min-height:280px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header>
+  <div class="brandrow"><div class="sig" aria-hidden="true">†</div><div><h1>NEFASTO</h1><div class="kicker">O despertar das sombras</div></div></div>
+  <p class="subtitle">Uma demonstração interativa de um bot com personalidade sombria.</p>
+  <div class="status"><span class="dot"></span> DEMONSTRAÇÃO LOCAL · SEM WHATSAPP</div>
+</header>
+<div class="notice"><strong>Modo de teste:</strong> esta conversa acontece somente nesta página. Nenhuma mensagem é enviada ao WhatsApp.</div>
+<section id="chat" class="chat" aria-label="Conversa com NEFASTO" aria-live="polite">
+  <div class="msg bot"><div class="who">NEFASTO</div>As sombras despertaram. 🩸<br>Digite <code>!menu</code> para conhecer meus comandos, ou escolha um atalho abaixo.<div class="time">agora</div></div>
+</section>
+<div class="quick" aria-label="Comandos de exemplo">
+  <button class="chip" data-cmd="!menu">!menu</button><button class="chip" data-cmd="!ajuda">!ajuda</button><button class="chip" data-cmd="!sobre">!sobre</button><button class="chip" data-cmd="!perfil">!perfil</button>
+</div>
+<form id="form" class="composer">
+  <input id="message" type="text" placeholder="Digite uma mensagem..." autocomplete="off" aria-label="Sua mensagem">
+  <button class="send" type="submit">Enviar ↗</button>
+</form>
+<div class="bottom">Dica: toque em um comando de exemplo para testá-lo instantaneamente.</div>
+<section class="guide">
+  <h2>Manual rápido de comandos</h2>
+  <div class="cmdgrid">
+    <div class="cmd"><code>!menu</code><p>Exibe a lista de comandos disponíveis.</p></div>
+    <div class="cmd"><code>!ajuda</code><p>Explica como usar a demonstração.</p></div>
+    <div class="cmd"><code>!sobre</code><p>Conta o objetivo e o estado do projeto.</p></div>
+    <div class="cmd"><code>!perfil</code><p>Mostra um perfil fictício de exemplo.</p></div>
+  </div>
+</section>
+<footer>NEFASTO · Projeto de aprendizagem · HTML, CSS e JavaScript</footer>
+</main>
+<script>
+(function(){
+  const chat=document.getElementById('chat');
+  const form=document.getElementById('form');
+  const input=document.getElementById('message');
+  const answers={
+    '!menu':'╔═══ ⛧ NEFASTO · MENU ⛧ ═══╗\\n!menu — lista os comandos\\n!ajuda — instruções de uso\\n!sobre — informações do projeto\\n!perfil — perfil de demonstração\\n╚════════════════════╝\\nEscolha um comando e envie.',
+    '!ajuda':'Como usar:\\n1. Digite um comando começando com !\\n2. Toque em Enviar ou em um atalho\\n3. Leia a resposta aqui na conversa.\\n\\nComandos válidos: !menu, !ajuda, !sobre e !perfil. Esta versão é apenas uma simulação local.',
+    '!sobre':'NEFASTO é o primeiro protótipo de um bot com estética gótica das trevas.\\n\\nTecnologias: HTML, CSS e JavaScript puro.\\nEstado: demonstração interativa.\\nWhatsApp: ainda não conectado — nenhuma mensagem sai desta página.',
+    '!perfil':'⛧ PERFIL DE EXEMPLO ⛧\\nNome: Visitante das Sombras\\nClasse: Explorador\\nNível: 01\\nAlinhamento: Caótico sombrio\\n\\nEste perfil é fictício e serve apenas para demonstrar uma possível função futura.'
+  };
+  function now(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}
+  function add(text,kind){
+    const el=document.createElement('div'); el.className='msg '+kind;
+    const who=document.createElement('div');who.className='who';who.textContent=kind==='user'?'Você':'NEFASTO';
+    const body=document.createElement('div');body.textContent=text;
+    const time=document.createElement('div');time.className='time';time.textContent=now();
+    el.append(who,body,time);chat.appendChild(el);chat.scrollTop=chat.scrollHeight;
+  }
+  function send(raw){
+    const text=String(raw||'').trim();if(!text)return;
+    add(text,'user');input.value='';
+    const command=text.toLowerCase().split(/\\s+/)[0];
+    if(answers[command]) add(answers[command],'bot');
+    else add('Não reconheço esse comando ainda. ⛧\\nDigite !ajuda para ver os comandos disponíveis: !menu, !ajuda, !sobre e !perfil.','bot');
+    input.focus();
+  }
+  form.addEventListener('submit',function(e){e.preventDefault();send(input.value);});
+  document.querySelectorAll('[data-cmd]').forEach(function(btn){btn.addEventListener('click',function(){send(btn.dataset.cmd);});});
+})();
+</script>
+</body>
+</html>
